@@ -4,3 +4,7 @@ res://level/props/wind_sway.tres
 res://gui/theme.tres
 res://level/background/parallax_background.tscn
 res://level/level.tscn
+res://level/background/parallax_background.tscn
+res://level/platforms/platform.tscn
+res://gui/charge_bar.tscn
+res://level/level.gd

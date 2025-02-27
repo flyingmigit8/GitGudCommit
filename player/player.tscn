@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vh7pmputa7r3"]
+[gd_scene load_steps=20 format=3 uid="uid://vh7pmputa7r3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://sjod173axgwf" path="res://player/jump.wav" id="5"]
@@ -183,16 +183,35 @@ _data = {
 [sub_resource type="RectangleShape2D" id="11"]
 size = Vector2(42.5, 54.5)
 
+[sub_resource type="Gradient" id="Gradient_73vmx"]
+offsets = PackedFloat32Array(0.992958, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w6kuv"]
+gradient = SubResource("Gradient_73vmx")
+width = 100
+height = 20
+fill_from = Vector2(0.65534, 0.631068)
+fill_to = Vector2(0.951456, 0)
+
+[sub_resource type="Gradient" id="Gradient_2f0au"]
+offsets = PackedFloat32Array(0, 0.0140845, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.950704, 0.902377, 0.370775, 1, 1, 0.949167, 0.39, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_08ij1"]
+gradient = SubResource("Gradient_2f0au")
+width = 100
+height = 20
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("3")
-
-[node name="ShootAnimation" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
 target_position = Vector2(0, 6)
@@ -203,6 +222,7 @@ position = Vector2(0, -14)
 texture = ExtResource("9")
 hframes = 8
 vframes = 8
+frame = 42
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -229,28 +249,41 @@ volume_db = -3.0
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="Left" type="TouchScreenButton" parent="UI"]
-position = Vector2(157, 813)
-scale = Vector2(2, 2)
-passby_press = true
-action = "move_left"
-visibility_mode = 1
+[node name="ChargeBar" type="TextureProgressBar" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_under = SubResource("GradientTexture2D_w6kuv")
+texture_progress = SubResource("GradientTexture2D_08ij1")
 
-[node name="Right" type="TouchScreenButton" parent="UI"]
-position = Vector2(425, 813)
-scale = Vector2(2, 2)
-passby_press = true
-action = "move_right"
-visibility_mode = 1
+[node name="PowerLoopLabel" type="Label" parent="UI"]
+offset_left = 274.0
+offset_top = 437.0
+offset_right = 528.0
+offset_bottom = 460.0
+text = "for (int i = 0; i < MAX_POWER; i++)"
 
-[node name="Jump" type="TouchScreenButton" parent="UI"]
-position = Vector2(1871, 813)
-scale = Vector2(2, 2)
-action = "jump"
-visibility_mode = 1
+[node name="CurrentILabel" type="Label" parent="UI"]
+offset_left = 384.0
+offset_top = 460.0
+offset_right = 425.0
+offset_bottom = 483.0
 
-[node name="Fire" type="TouchScreenButton" parent="UI"]
-position = Vector2(1870, 564)
-scale = Vector2(2, 2)
-action = "shoot"
-visibility_mode = 1
+[node name="TextParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 18.75)
+
+[node name="ParticlesContainer" type="Control" parent="."]
+visible = false
+z_index = 100
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
