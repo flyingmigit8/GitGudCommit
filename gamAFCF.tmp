@@ -19,3 +19,5 @@ scale = Vector2(0.824324, 0.802374)
 layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource("4_x6l06")]
+fade_in_duration = null
+fade_out_duration = null

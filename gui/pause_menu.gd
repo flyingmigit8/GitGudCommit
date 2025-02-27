@@ -7,7 +7,6 @@ extends Control
 
 @onready var center_cont := $ColorRect/CenterContainer as CenterContainer
 @onready var resume_button := center_cont.get_node(^"VBoxContainer/ResumeButton") as Button
-@onready var coins_counter := $ColorRect/CoinsCounter as CoinsCounter
 
 
 func _ready() -> void:
@@ -53,24 +52,8 @@ func open() -> void:
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
-func _on_coin_collected() -> void:
-	coins_counter.collect_coin()
-
-
 func _on_resume_button_pressed() -> void:
 	close()
-
-
-func _on_singleplayer_button_pressed() -> void:
-	if visible:
-		get_tree().paused = false
-		get_tree().change_scene_to_file("res://game_singleplayer.tscn")
-
-
-func _on_splitscreen_button_pressed() -> void:
-	if visible:
-		get_tree().paused = false
-		get_tree().change_scene_to_file("res://game_splitscreen.tscn")
 
 
 func _on_quit_button_pressed() -> void:
