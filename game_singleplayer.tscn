@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf3wnwihk7ymg"]
+[gd_scene load_steps=9 format=3 uid="uid://bf3wnwihk7ymg"]
 
 [ext_resource type="Script" path="res://game.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ctgumjaytuoch" path="res://level/level.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://player/player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="4_x6l06"]
+[ext_resource type="Texture2D" uid="uid://b468ky3djl8s" path="res://gui/VSCodeLeftBar.png" id="5_6qx0v"]
+[ext_resource type="Texture2D" uid="uid://gonjcdsbb1dy" path="res://gui/VSCodeBottomBar.png" id="6_xf2ti"]
+[ext_resource type="Texture2D" uid="uid://bgxvin5sb7vmt" path="res://gui/VSCodeTopBar.png" id="7_otj2s"]
+[ext_resource type="Texture2D" uid="uid://w7l67nxmxxvq" path="res://gui/VsCodeTopBar2.png" id="8_xf1xy"]
 
 [node name="Game" type="Node"]
 process_mode = 3
@@ -19,3 +23,39 @@ scale = Vector2(0.824324, 0.802374)
 layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource("4_x6l06")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VsCodeLeftBar" type="TextureRect" parent="CanvasLayer"]
+z_index = 1
+offset_top = 13.0
+offset_right = 125.0
+offset_bottom = 474.0
+texture = ExtResource("5_6qx0v")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VsCodeBottomBar" type="TextureRect" parent="CanvasLayer"]
+z_index = 2
+offset_top = 473.0
+offset_right = 800.0
+offset_bottom = 480.0
+texture = ExtResource("6_xf2ti")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VsCodeTopBar" type="TextureRect" parent="CanvasLayer"]
+offset_right = 800.0
+offset_bottom = 14.0
+texture = ExtResource("7_otj2s")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VsCodeTopBar2" type="TextureRect" parent="CanvasLayer"]
+offset_left = 125.0
+offset_top = 13.0
+offset_right = 800.0
+offset_bottom = 36.0
+texture = ExtResource("8_xf1xy")
+expand_mode = 1
+stretch_mode = 6
