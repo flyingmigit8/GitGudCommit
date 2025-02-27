@@ -2,15 +2,3 @@ res://game_singleplayer.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
 res://gui/theme.tres
-res://gui/pause_menu_singleplayer.tscn
-res://gui/pause_menu.gd
-res://README.md
-res://gui/pause_menu_splitscreen.tscn
-res://game_splitscreen.tscn
-res://level/level.tscn
-res://player/player.gd
-res://player/player.tscn
-res://level/coin.tscn
-res://gui/pause_menu.tscn
-res://enemy/enemy.gd
-res://enemy/enemy.tscn
