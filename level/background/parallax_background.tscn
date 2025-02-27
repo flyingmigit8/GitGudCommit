@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://xuu87ie1oucs" path="res://gui/VsCodeBackground1.png" id="1_lyyqe"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
-follow_viewport_enabled = true
-scroll_base_scale = Vector2(0.1, 0)
+scroll_base_offset = Vector2(0, 100)
+scroll_base_scale = Vector2(0.1, 0.15)
 
 [node name="Background" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.04, 0.2)
+motion_scale = Vector2(0.1, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(-146, -1029)
+position = Vector2(104, -1242)
 scale = Vector2(0.78941, 1.00977)
 texture = ExtResource("1_lyyqe")
 centered = false
