@@ -3,32 +3,36 @@ extends CharacterBody2D
 
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
-const JUMP_VELOCITY = -725.0
-## Maximum speed at which the player can fall.
+const JUMP_VELOCITY = -950.0
+const MAX_CHARGE_TIME = 1.0
+const MIN_JUMP_VELOCITY = -750.0
 const TERMINAL_VELOCITY = 700
 
-## The player listens for input actions appended with this suffix.[br]
-## Used to separate controls for multiple players in splitscreen.
 @export var action_suffix := ""
 
 var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var platform_detector := $PlatformDetector as RayCast2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
-@onready var shoot_timer := $ShootAnimation as Timer
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var jump_sound := $Jump as AudioStreamPlayer2D
 @onready var camera := $Camera as Camera2D
-var _double_jump_charged := false
+@onready var charge_bar := $UI/ChargeBar as TextureProgressBar
 
+var _is_charging_jump := false
+var _charge_time := 0.0
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor():
-		_double_jump_charged = true
 	if Input.is_action_just_pressed("jump" + action_suffix):
-		try_jump()
-	elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
-		# The player let go of jump early, reduce vertical momentum.
-		velocity.y *= 0.6
+		_start_charging_jump()
+	elif Input.is_action_just_released("jump" + action_suffix):
+		_stop_charging_jump()
+
+	if _is_charging_jump:
+		_charge_time += delta
+		_update_charge_bar()  # Update the charge bar while charging
+	else:
+		_hide_charge_bar()  # Hide the charge bar when not charging
+
 	# Fall.
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
@@ -45,9 +49,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	var animation := get_new_animation()
-	if animation != animation_player.current_animation and shoot_timer.is_stopped():
+	if animation != animation_player.current_animation:
 		animation_player.play(animation)
-
 
 func get_new_animation() -> String:
 	var animation_new: String
@@ -63,15 +66,35 @@ func get_new_animation() -> String:
 			animation_new = "jumping"
 	return animation_new
 
+func _start_charging_jump() -> void:
+	if is_on_floor():
+		_is_charging_jump = true
+		_charge_time = 0.0
+		charge_bar.visible = true  # Show the charge bar when charging starts
+
+func _stop_charging_jump() -> void:
+	if _is_charging_jump:
+		_is_charging_jump = false
+		try_jump()
+		#_hide_charge_bar()  # Hide the charge bar when charging stops
 
 func try_jump() -> void:
 	if is_on_floor():
 		jump_sound.pitch_scale = 1.0
-	elif _double_jump_charged:
-		_double_jump_charged = false
-		velocity.x *= 2.5
-		jump_sound.pitch_scale = 1.5
 	else:
-		return
-	velocity.y = JUMP_VELOCITY
+		return  # Only allow jumping when on the floor
+
+	# Calculate jump velocity based on charge time
+	var charge_ratio: float = min(_charge_time / MAX_CHARGE_TIME, 1.0)
+	var jump_velocity: float = JUMP_VELOCITY * charge_ratio
+	jump_velocity = max(jump_velocity, MIN_JUMP_VELOCITY)  # Ensure minimum jump height
+
+	velocity.y = jump_velocity
 	jump_sound.play()
+
+func _update_charge_bar() -> void:
+	var charge_ratio : float = min(_charge_time / MAX_CHARGE_TIME, 1.0)
+	charge_bar.value = charge_ratio * 100
+
+func _hide_charge_bar() -> void:
+	charge_bar.visible = false

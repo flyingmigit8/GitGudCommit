@@ -14,3 +14,7 @@ res://level/coin.tscn
 res://gui/pause_menu.tscn
 res://enemy/enemy.gd
 res://enemy/enemy.tscn
+res://level/background/parallax_background.tscn
+res://level/platforms/platform.tscn
+res://gui/charge_bar.tscn
+res://level/level.gd
