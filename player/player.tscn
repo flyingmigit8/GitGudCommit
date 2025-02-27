@@ -216,6 +216,7 @@ limit_left = -715
 limit_top = -250
 limit_right = 1425
 limit_bottom = 690
+drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
