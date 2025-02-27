@@ -261,3 +261,28 @@ grow_horizontal = 2
 grow_vertical = 0
 texture_under = SubResource("GradientTexture2D_w6kuv")
 texture_progress = SubResource("GradientTexture2D_08ij1")
+
+[node name="PowerLoopLabel" type="Label" parent="UI"]
+offset_left = 274.0
+offset_top = 437.0
+offset_right = 528.0
+offset_bottom = 460.0
+text = "for (int i = 0; i < MAX_POWER; i++)"
+
+[node name="CurrentILabel" type="Label" parent="UI"]
+offset_left = 384.0
+offset_top = 460.0
+offset_right = 425.0
+offset_bottom = 483.0
+
+[node name="TextParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 18.75)
+
+[node name="ParticlesContainer" type="Control" parent="."]
+visible = false
+z_index = 100
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
