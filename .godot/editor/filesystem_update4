@@ -1,4 +1,7 @@
-res://game_singleplayer.tscn
+res://level/background/parallax_background.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
 res://gui/theme.tres
+res://game_singleplayer.tscn
+res://level/level.tscn
+res://player/player.tscn
