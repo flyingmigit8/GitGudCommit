@@ -1,5 +1,4 @@
-res://player/player.tscn
+res://game_singleplayer.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
-res://level/level.tscn
-res://level/coin.tscn
+res://gui/theme.tres

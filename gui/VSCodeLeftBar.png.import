@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj2absxg54f75"
-path="res://.godot/imported/coin.webp-1d50c095672512acb2df6e9dbf7e85c6.ctex"
+uid="uid://b468ky3djl8s"
+path="res://.godot/imported/VSCodeLeftBar.png-0c46dc5249ddf3e0bb2e040767da5ad1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/coin.webp"
-dest_files=["res://.godot/imported/coin.webp-1d50c095672512acb2df6e9dbf7e85c6.ctex"]
+source_file="res://gui/VSCodeLeftBar.png"
+dest_files=["res://.godot/imported/VSCodeLeftBar.png-0c46dc5249ddf3e0bb2e040767da5ad1.ctex"]
 
 [params]
 

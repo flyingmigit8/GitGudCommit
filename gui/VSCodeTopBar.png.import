@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tgw4f8fu0btj"
-path="res://.godot/imported/touch_button_fire.webp-dccf84dcf0f617f42794a4bab6e5b347.ctex"
+uid="uid://bgxvin5sb7vmt"
+path="res://.godot/imported/VSCodeTopBar.png-f56d0af431eea96931c685367df0432f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/touch_button_fire.webp"
-dest_files=["res://.godot/imported/touch_button_fire.webp-dccf84dcf0f617f42794a4bab6e5b347.ctex"]
+source_file="res://gui/VSCodeTopBar.png"
+dest_files=["res://.godot/imported/VSCodeTopBar.png-f56d0af431eea96931c685367df0432f.ctex"]
 
 [params]
 
