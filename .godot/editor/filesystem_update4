@@ -12,3 +12,5 @@ res://player/player.gd
 res://player/player.tscn
 res://level/coin.tscn
 res://gui/pause_menu.tscn
+res://enemy/enemy.gd
+res://enemy/enemy.tscn

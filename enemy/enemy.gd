@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 enum State {
 	WALKING,
-	DEAD,
 }
 
 const WALK_SPEED = 22.0
@@ -41,12 +40,6 @@ func _physics_process(delta: float) -> void:
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
 
-
-func destroy() -> void:
-	_state = State.DEAD
-	velocity = Vector2.ZERO
-
-
 func get_new_animation() -> StringName:
 	var animation_new: StringName
 	if _state == State.WALKING:
@@ -54,6 +47,4 @@ func get_new_animation() -> StringName:
 			animation_new = &"idle"
 		else:
 			animation_new = &"walk"
-	else:
-		animation_new = &"destroy"
 	return animation_new

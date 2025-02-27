@@ -17,7 +17,6 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var shoot_timer := $ShootAnimation as Timer
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var jump_sound := $Jump as AudioStreamPlayer2D
-@onready var gun: Gun = sprite.get_node(^"Gun")
 @onready var camera := $Camera as Camera2D
 var _double_jump_charged := false
 
@@ -45,18 +44,12 @@ func _physics_process(delta: float) -> void:
 	floor_stop_on_slope = not platform_detector.is_colliding()
 	move_and_slide()
 
-	var is_shooting := false
-	if Input.is_action_just_pressed("shoot" + action_suffix):
-		is_shooting = gun.shoot(sprite.scale.x)
-
-	var animation := get_new_animation(is_shooting)
+	var animation := get_new_animation()
 	if animation != animation_player.current_animation and shoot_timer.is_stopped():
-		if is_shooting:
-			shoot_timer.start()
 		animation_player.play(animation)
 
 
-func get_new_animation(is_shooting := false) -> String:
+func get_new_animation() -> String:
 	var animation_new: String
 	if is_on_floor():
 		if absf(velocity.x) > 0.1:
@@ -68,8 +61,6 @@ func get_new_animation(is_shooting := false) -> String:
 			animation_new = "falling"
 		else:
 			animation_new = "jumping"
-	if is_shooting:
-		animation_new += "_weapon"
 	return animation_new
 
 
