@@ -17,6 +17,8 @@ shape = SubResource("1")
 one_way_collision = true
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -46.0
+offset_top = -17.0
+offset_right = 47.0
+offset_bottom = 6.0
 text = "<platform/>"

@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 enum State {
 	WALKING,
-	FLYING
+	FLYING,
+	STATIC
 }
 
 const WALK_SPEED = 22.0
@@ -10,7 +11,8 @@ const FLY_SPEED = 22.0
 const KNOCKBACK_FORCE = 600  # Strength of the knockback
 const PLAYER_BOUNCE_FORCE = -600  # Adjust bounce height
 
-@export var is_flying: bool = false  # Toggle between flying and walking
+@export var is_flying: bool = false 
+@export var is_static: bool = false  
 var _state: State
 
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
@@ -21,10 +23,13 @@ var _state: State
 @onready var collision_sound := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 func _ready() -> void:
-	# Set the initial state based on the `is_flying` flag
-	_state = State.FLYING if is_flying else State.WALKING
-	if is_flying:
+	if is_static:
+		_state = State.STATIC
+	elif is_flying:
+		_state = State.FLYING
 		MotionMode.MOTION_MODE_FLOATING
+	else:
+		_state = State.WALKING
 
 func _physics_process(delta: float) -> void:
 	match _state:
@@ -32,6 +37,8 @@ func _physics_process(delta: float) -> void:
 			handle_walking(delta)
 		State.FLYING:
 			handle_flying(delta)
+		State.STATIC:
+			handle_static(delta)
 
 	move_and_slide()
 
@@ -67,7 +74,9 @@ func handle_flying(delta: float) -> void:
 		velocity.x = FLY_SPEED
 	elif wall_detector_right.is_colliding():
 		velocity.x = -FLY_SPEED
-
+		
+func handle_static(delta: float) -> void:
+	velocity = Vector2.ZERO
 
 func handle_player_collision(player: CharacterBody2D, collision_normal: Vector2):
 	collision_sound.play()

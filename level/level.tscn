@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bg1drbxm5q35c" path="res://level/metro-vein-30-32x.png" id="1_5oo7t"]
 [ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cky6e5nl0nyod" path="res://level/platforms/platform.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dmarkuuxaphhd" path="res://level/portal/Portal.tscn" id="5_tw5v5"]
+[ext_resource type="PackedScene" uid="uid://dmarkuuxaphhd" path="res://level/portal/Portal.tscn" id="6_jw75j"]
 [ext_resource type="PackedScene" uid="uid://cw6nldo3rjyyq" path="res://level/background/parallax_background.tscn" id="7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqxta"]
@@ -78,6 +78,21 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 16
 sources/0 = SubResource("TileSetAtlasSource_wqxta")
 
+[sub_resource type="Animation" id="Animation_1wlsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(800, 410)]
+}
+
 [sub_resource type="Animation" id="1"]
 resource_name = "move"
 length = 4.0
@@ -95,7 +110,13 @@ tracks/0/keys = {
 "values": [Vector2(814, 552), Vector2(969, 287), Vector2(814, 552)]
 }
 
-[sub_resource type="Animation" id="Animation_1wlsm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knmjc"]
+_data = {
+"RESET": SubResource("Animation_1wlsm"),
+"move": SubResource("1")
+}
+
+[sub_resource type="Animation" id="Animation_bmmuy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -107,13 +128,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(800, 410)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_knmjc"]
-_data = {
-"RESET": SubResource("Animation_1wlsm"),
-"move": SubResource("1")
+"values": [Vector2(178, 554)]
 }
 
 [sub_resource type="Animation" id="Animation_tqklc"]
@@ -131,21 +146,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(178, 554), Vector2(188, 258), Vector2(178, 554)]
-}
-
-[sub_resource type="Animation" id="Animation_bmmuy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(178, 554)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3jiv"]
@@ -246,7 +246,7 @@ is_flying = true
 
 [node name="Enemy5" parent="Enemies" instance=ExtResource("2")]
 z_index = 2
-position = Vector2(592, -396)
+position = Vector2(1080, -603)
 motion_mode = 1
 is_flying = true
 
@@ -262,6 +262,255 @@ position = Vector2(972, 568)
 
 [node name="Enemy" parent="." instance=ExtResource("2")]
 position = Vector2(668, 582)
+is_static = true
 
-[node name="Portal" parent="." instance=ExtResource("5_tw5v5")]
-position = Vector2(531, 475)
+[node name="Enemy5" parent="." instance=ExtResource("2")]
+z_index = 2
+position = Vector2(535, -239)
+motion_mode = 1
+is_flying = true
+
+[node name="Enemy6" parent="." instance=ExtResource("2")]
+z_index = 2
+position = Vector2(611, -400)
+motion_mode = 1
+is_flying = true
+is_static = true
+
+[node name="Enemy2" parent="." instance=ExtResource("2")]
+z_index = 2
+position = Vector2(451, -68)
+motion_mode = 1
+is_flying = true
+is_static = true
+
+[node name="Enemy3" parent="." instance=ExtResource("2")]
+position = Vector2(929, 58)
+is_flying = true
+is_static = true
+
+[node name="Enemy4" parent="." instance=ExtResource("2")]
+position = Vector2(727, -515)
+is_flying = true
+
+[node name="Enemy7" parent="." instance=ExtResource("2")]
+position = Vector2(270, -583)
+is_flying = true
+
+[node name="Platform3" parent="." instance=ExtResource("3")]
+position = Vector2(1100, -711)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform4" parent="." instance=ExtResource("3")]
+position = Vector2(838, -757)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform5" parent="." instance=ExtResource("3")]
+position = Vector2(544, -892)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy8" parent="." instance=ExtResource("2")]
+position = Vector2(307, -873)
+is_flying = true
+
+[node name="Platform12" parent="." instance=ExtResource("3")]
+position = Vector2(272, -930)
+
+[node name="Enemy9" parent="." instance=ExtResource("2")]
+position = Vector2(606, -751)
+is_flying = true
+
+[node name="Platform6" parent="." instance=ExtResource("3")]
+position = Vector2(225, -633)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform7" parent="." instance=ExtResource("3")]
+position = Vector2(217, -768)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform8" parent="." instance=ExtResource("3")]
+position = Vector2(1108, -980)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy10" parent="." instance=ExtResource("2")]
+position = Vector2(961, -911)
+is_flying = true
+is_static = true
+
+[node name="Platform9" parent="." instance=ExtResource("3")]
+position = Vector2(846, -1020)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform10" parent="." instance=ExtResource("3")]
+position = Vector2(564, -1090)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform11" parent="." instance=ExtResource("3")]
+position = Vector2(944, 158)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform13" parent="." instance=ExtResource("3")]
+position = Vector2(925, 12)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform14" parent="." instance=ExtResource("3")]
+position = Vector2(1160, -915)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform15" parent="." instance=ExtResource("3")]
+position = Vector2(896, -1143)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform16" parent="." instance=ExtResource("3")]
+position = Vector2(1108, -980)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy11" parent="." instance=ExtResource("2")]
+position = Vector2(1005, -1113)
+is_flying = true
+is_static = true
+
+[node name="Platform17" parent="." instance=ExtResource("3")]
+position = Vector2(1106, -1326)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy12" parent="." instance=ExtResource("2")]
+position = Vector2(1072, -1274)
+is_flying = true
+is_static = true
+
+[node name="Platform18" parent="." instance=ExtResource("3")]
+position = Vector2(743, -1359)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy13" parent="." instance=ExtResource("2")]
+position = Vector2(881, -1366)
+is_flying = true
+is_static = true
+
+[node name="Platform19" parent="." instance=ExtResource("3")]
+position = Vector2(1040, -1485)
+
+[node name="Platform20" parent="." instance=ExtResource("3")]
+position = Vector2(272, -1340)
+
+[node name="Enemy14" parent="." instance=ExtResource("2")]
+position = Vector2(485, -1355)
+is_flying = true
+is_static = true
+
+[node name="Platform21" parent="." instance=ExtResource("3")]
+position = Vector2(740, -1554)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform22" parent="." instance=ExtResource("3")]
+position = Vector2(1053, -1656)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform23" parent="." instance=ExtResource("3")]
+position = Vector2(408, -1456)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform24" parent="." instance=ExtResource("3")]
+position = Vector2(258, -1536)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform25" parent="." instance=ExtResource("3")]
+position = Vector2(521, -1616)
+
+[node name="Enemy15" parent="." instance=ExtResource("2")]
+position = Vector2(457, -1531)
+is_flying = true
+is_static = true
+
+[node name="Enemy16" parent="." instance=ExtResource("2")]
+position = Vector2(861, -1661)
+is_flying = true
+is_static = true
+
+[node name="Enemy17" parent="." instance=ExtResource("2")]
+position = Vector2(774, -1474)
+is_flying = true
+is_static = true
+
+[node name="Portal" parent="." instance=ExtResource("6_jw75j")]
+position = Vector2(228, -2241)
+
+[node name="Enemy18" parent="." instance=ExtResource("2")]
+position = Vector2(379, -1706)
+is_flying = true
+
+[node name="Platform26" parent="." instance=ExtResource("3")]
+position = Vector2(254, -1773)
+
+[node name="Platform27" parent="." instance=ExtResource("3")]
+position = Vector2(685, -1785)
+
+[node name="Platform28" parent="." instance=ExtResource("3")]
+position = Vector2(686, -1866)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform29" parent="." instance=ExtResource("3")]
+position = Vector2(681, -1947)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform30" parent="." instance=ExtResource("3")]
+position = Vector2(957, -2021)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform31" parent="." instance=ExtResource("3")]
+position = Vector2(407, -2019)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform32" parent="." instance=ExtResource("3")]
+position = Vector2(1102, -2177)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform33" parent="." instance=ExtResource("3")]
+position = Vector2(278, -2186)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Enemy19" parent="." instance=ExtResource("2")]
+position = Vector2(910, -1863)
+is_flying = true
+is_static = true
+
+[node name="Enemy20" parent="." instance=ExtResource("2")]
+position = Vector2(452, -1870)
+is_flying = true
+is_static = true
+
+[node name="Enemy21" parent="." instance=ExtResource("2")]
+position = Vector2(383, -2108)
+is_flying = true
+is_static = true
+
+[node name="Enemy22" parent="." instance=ExtResource("2")]
+position = Vector2(959, -2112)
+is_flying = true
+is_static = true
