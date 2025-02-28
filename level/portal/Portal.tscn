@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmarkuuxaphhd"]
+
+[ext_resource type="Texture2D" uid="uid://do3xma2uh00ch" path="res://level/portal/portal.png" id="1_0yah0"]
+[ext_resource type="Script" path="res://level/portal/area_2d.gd" id="2_hgpqi"]
+[ext_resource type="PackedScene" uid="uid://bw137ccbnowns" path="res://gui/victory_screen.tscn" id="3_gh3y2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5emf4"]
+radius = 30.0167
+
+[node name="Portal" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -54)
+scale = Vector2(0.210938, 0.199219)
+texture = ExtResource("1_0yah0")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_hgpqi")
+victory_screen_scene = ExtResource("3_gh3y2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -53)
+shape = SubResource("CircleShape2D_5emf4")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

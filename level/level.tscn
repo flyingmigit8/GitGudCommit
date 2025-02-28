@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctgumjaytuoch"]
+[gd_scene load_steps=11 format=3 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="TileSet" uid="uid://08mkofgbxx70" path="res://level/tileset.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cky6e5nl0nyod" path="res://level/platforms/platform.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://bxsmiv7k3fngt" path="res://level/platforms/moving_platform.webp" id="6"]
+[ext_resource type="PackedScene" uid="uid://dmarkuuxaphhd" path="res://level/portal/Portal.tscn" id="6_jw75j"]
 [ext_resource type="PackedScene" uid="uid://cw6nldo3rjyyq" path="res://level/background/parallax_background.tscn" id="7"]
 
 [sub_resource type="Animation" id="1"]
@@ -120,3 +121,6 @@ z_index = 2
 position = Vector2(395, 53)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("7")]
+
+[node name="Portal" parent="." instance=ExtResource("6_jw75j")]
+position = Vector2(-68, 622)
