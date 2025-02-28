@@ -39,6 +39,5 @@ func _ready():
 	collision_shape.shape = shape
 	collision_shape.position.y += rect_size.y * 0.35
 
-	
 	# Center the label on the platform
 	label.position = -rect_size / 2

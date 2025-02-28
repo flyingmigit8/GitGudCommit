@@ -41,7 +41,6 @@ func apply_bounce(bounce_force: float):
 	move_and_slide()
 
 func apply_knockback(force: Vector2):
-	print('collide')
 	velocity = force
 	_stunned = true
 	_stun_timer = 0.0

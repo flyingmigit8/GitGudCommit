@@ -8,7 +8,6 @@ extends Control
 @onready var center_cont := $ColorRect/CenterContainer as CenterContainer
 @onready var resume_button := center_cont.get_node(^"VBoxContainer/ResumeButton") as Button
 
-
 func _ready() -> void:
 	hide()
 
@@ -54,8 +53,20 @@ func open() -> void:
 
 func _on_resume_button_pressed() -> void:
 	close()
-
+	
+func _on_reset_button_pressed() -> void:
+	print('reset')
+	close()
+	reset_game()
 
 func _on_quit_button_pressed() -> void:
 	if visible:
 		get_tree().quit()
+		
+func reset_game() -> void:
+	# Unpause the game
+	get_tree().paused = false
+	
+	# Reload the current scene to reset the game state
+	var current_scene = get_tree().current_scene
+	get_tree().reload_current_scene()
