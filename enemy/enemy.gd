@@ -2,22 +2,50 @@ extends CharacterBody2D
 
 enum State {
 	WALKING,
+	FLYING
 }
 
 const WALK_SPEED = 22.0
+const FLY_SPEED = 22.0
 const KNOCKBACK_FORCE = 600  # Strength of the knockback
 const PLAYER_BOUNCE_FORCE = -600  # Adjust bounce height
 
-var _state := State.WALKING
+@export var is_flying: bool = false  # Toggle between flying and walking
+var _state: State
 
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var floor_detector_left := $FloorDetectorLeft as RayCast2D
 @onready var floor_detector_right := $FloorDetectorRight as RayCast2D
+@onready var wall_detector_left := $WallDetectorLeft as RayCast2D
+@onready var wall_detector_right := $WallDetectorRight as RayCast2D
 @onready var collision_sound := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
+func _ready() -> void:
+	# Set the initial state based on the `is_flying` flag
+	_state = State.FLYING if is_flying else State.WALKING
+	if is_flying:
+		MotionMode.MOTION_MODE_FLOATING
+
 func _physics_process(delta: float) -> void:
-	if _state == State.WALKING and velocity.is_zero_approx():
+	match _state:
+		State.WALKING:
+			handle_walking(delta)
+		State.FLYING:
+			handle_flying(delta)
+
+	move_and_slide()
+
+	# Check for collisions with player
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Player:
+			handle_player_collision(collider, collision.get_normal())
+
+func handle_walking(delta: float) -> void:
+	if velocity.is_zero_approx():
 		velocity.x = WALK_SPEED
+
 	velocity.y += gravity * delta
 
 	# Enemy platform detection
@@ -28,15 +56,18 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_wall():
 		velocity.x = -velocity.x
+
+func handle_flying(delta: float) -> void:
+	if velocity.is_zero_approx():
+		velocity.x = FLY_SPEED
 		
-	move_and_slide()
-	
-	# Check for collisions with player
-	for i in range(get_slide_collision_count()):
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider is Player:
-			handle_player_collision(collider, collision.get_normal())
+	velocity.y = 0  # No vertical movement for flying enemy
+
+	if wall_detector_left.is_colliding():
+		velocity.x = FLY_SPEED
+	elif wall_detector_right.is_colliding():
+		velocity.x = -FLY_SPEED
+
 
 func handle_player_collision(player: CharacterBody2D, collision_normal: Vector2):
 	collision_sound.play()
