@@ -1,8 +1,13 @@
+
 [gd_scene load_steps=12 format=4 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="Texture2D" uid="uid://bg1drbxm5q35c" path="res://level/metro-vein-30-32x.png" id="1_5oo7t"]
 [ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cky6e5nl0nyod" path="res://level/platforms/platform.tscn" id="3"]
+
+[ext_resource type="Texture2D" uid="uid://bxsmiv7k3fngt" path="res://level/platforms/moving_platform.webp" id="6"]
+[ext_resource type="PackedScene" uid="uid://dmarkuuxaphhd" path="res://level/portal/Portal.tscn" id="6_jw75j"]
+
 [ext_resource type="PackedScene" uid="uid://cw6nldo3rjyyq" path="res://level/background/parallax_background.tscn" id="7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqxta"]
@@ -242,3 +247,6 @@ z_index = 2
 position = Vector2(972, 568)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("7")]
+
+[node name="Portal" parent="." instance=ExtResource("6_jw75j")]
+position = Vector2(-68, 622)
