@@ -34,6 +34,9 @@ func _ready() -> void:
 	text_particles.emitting = false
 	update_power_loop_label(0)
 
+func apply_force(force: Vector2):
+	velocity += force
+
 func apply_bounce(bounce_force: float):
 	velocity.y = bounce_force  # Apply upward force
 	_stunned = true

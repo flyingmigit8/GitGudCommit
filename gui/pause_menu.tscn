@@ -48,10 +48,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Resume"
 
+[node name="ResetButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reset"
+
 [node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

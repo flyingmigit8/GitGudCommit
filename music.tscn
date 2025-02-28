@@ -6,3 +6,5 @@
 process_mode = 1
 stream = ExtResource("1_5jdkc")
 volume_db = -3.0
+autoplay = true
+parameters/looping = false

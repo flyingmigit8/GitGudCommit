@@ -104,6 +104,7 @@ polygon = PackedVector2Array(-170.838, 7.9798, -90.8381, -15.201, 95.0401, -20.2
 [node name="Platform3" parent="Platforms" instance=ExtResource("3")]
 position = Vector2(159, 253)
 platform_text = "<div/>"
+platform_type = "Bouncy"
 
 [node name="Enemies" type="Node" parent="."]
 
