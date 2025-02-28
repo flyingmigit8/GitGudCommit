@@ -341,3 +341,21 @@ offset_right = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="TextParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 18.75)
+
+[node name="ParticlesContainer" type="Control" parent="."]
+z_index = 100
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedDuck" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18.75)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_avol8")
+animation = &"run"
+frame_progress = 0.339769
