@@ -110,7 +110,8 @@ platform_type = "Bouncy"
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2")]
 z_index = 2
-position = Vector2(544, 355)
+position = Vector2(800, 544)
+is_flying = true
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2")]
 z_index = 2
