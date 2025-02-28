@@ -2,9 +2,6 @@ res://game_singleplayer.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
 res://gui/theme.tres
-res://level/background/parallax_background.tscn
-res://level/level.tscn
-res://level/background/parallax_background.tscn
-res://level/platforms/platform.tscn
-res://gui/charge_bar.tscn
-res://level/level.gd
+res://player/player.tscn
+res://enemy/enemy.tscn
+res://enemy/enemy.gd
