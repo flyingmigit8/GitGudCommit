@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://6mtip3ruyn"]
+[gd_scene load_steps=9 format=3 uid="uid://6mtip3ruyn"]
 
 [ext_resource type="AudioStream" uid="uid://duwm7i44o75o2" path="res://enemy/explode.wav" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjjj2w6eoktqt" path="res://enemy/missing_texture.png" id="2_cpbf2"]
 [ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="3"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://dj77f2f408bhd" path="res://enemy/erro.mp3" id="5_lx4ud"]
 
 [sub_resource type="CanvasItemMaterial" id="6"]
 blend_mode = 1
@@ -13,8 +14,8 @@ offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkya0"]
-radius = 14.0
-height = 40.0
+radius = 19.0
+height = 48.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -78,3 +79,6 @@ expand_mode = 1
 position = Vector2(0, 1)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rkya0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lx4ud")
