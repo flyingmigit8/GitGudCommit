@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://ctgumjaytuoch"]
+[gd_scene load_steps=23 format=4 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="Texture2D" uid="uid://bg1drbxm5q35c" path="res://level/metro-vein-30-32x.png" id="1_5oo7t"]
 [ext_resource type="PackedScene" uid="uid://6mtip3ruyn" path="res://enemy/enemy.tscn" id="2"]
@@ -118,6 +118,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_bmmuy"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -152,6 +153,120 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_bmmuy"),
 "up": SubResource("Animation_tqklc")
+}
+
+[sub_resource type="Animation" id="Animation_wwcsh"]
+resource_name = "asda"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.53333, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(906, -593), Vector2(1043, -455), Vector2(906, -593)]
+}
+
+[sub_resource type="Animation" id="Animation_6nvt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(906, -593)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vfwh"]
+_data = {
+"RESET": SubResource("Animation_6nvt7"),
+"asda": SubResource("Animation_wwcsh")
+}
+
+[sub_resource type="Animation" id="Animation_c4tke"]
+resource_name = "slide"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.13333, 3.36667, 4.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(564, -1090), Vector2(409, -1026), Vector2(500, -1190), Vector2(564, -1090)]
+}
+
+[sub_resource type="Animation" id="Animation_us8du"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(564, -1090)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6irl3"]
+_data = {
+"RESET": SubResource("Animation_us8du"),
+"slide": SubResource("Animation_c4tke")
+}
+
+[sub_resource type="Animation" id="Animation_5sd65"]
+resource_name = "slide"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 1, 2.73333, 4.53333, 5.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(278, -2186), Vector2(346, -2369), Vector2(529, -2193), Vector2(255, -2108), Vector2(278, -2186)]
+}
+
+[sub_resource type="Animation" id="Animation_tl30v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, -2186)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujkg5"]
+_data = {
+"RESET": SubResource("Animation_tl30v"),
+"slide": SubResource("Animation_5sd65")
 }
 
 [node name="Level" type="Node2D"]
@@ -230,6 +345,29 @@ position = Vector2(453, -484)
 [node name="Platform13" parent="Platforms" instance=ExtResource("3")]
 position = Vector2(906, -593)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform13"]
+libraries = {
+"": SubResource("AnimationLibrary_4vfwh")
+}
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(564, -1090)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform16"]
+root_node = NodePath("../../Platform16")
+libraries = {
+"": SubResource("AnimationLibrary_6irl3")
+}
+autoplay = "slide"
+
+[node name="Enemy" parent="Platforms" instance=ExtResource("2")]
+position = Vector2(556, -1139)
+
+[node name="Enemy2" parent="Platforms" instance=ExtResource("2")]
+position = Vector2(683, -1992)
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2")]
@@ -252,7 +390,7 @@ is_flying = true
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2")]
 z_index = 2
-position = Vector2(460, 571)
+position = Vector2(170, 344)
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource("2")]
 z_index = 2
@@ -274,19 +412,16 @@ is_flying = true
 z_index = 2
 position = Vector2(611, -400)
 motion_mode = 1
-is_flying = true
 is_static = true
 
 [node name="Enemy2" parent="." instance=ExtResource("2")]
 z_index = 2
 position = Vector2(451, -68)
 motion_mode = 1
-is_flying = true
 is_static = true
 
 [node name="Enemy3" parent="." instance=ExtResource("2")]
 position = Vector2(929, 58)
-is_flying = true
 is_static = true
 
 [node name="Enemy4" parent="." instance=ExtResource("2")]
@@ -340,7 +475,6 @@ platform_type = "Bouncy"
 
 [node name="Enemy10" parent="." instance=ExtResource("2")]
 position = Vector2(961, -911)
-is_flying = true
 is_static = true
 
 [node name="Platform9" parent="." instance=ExtResource("3")]
@@ -348,13 +482,28 @@ position = Vector2(846, -1020)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
-[node name="Platform10" parent="." instance=ExtResource("3")]
-position = Vector2(564, -1090)
+[node name="Platform11" parent="." instance=ExtResource("3")]
+position = Vector2(944, 158)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
-[node name="Platform11" parent="." instance=ExtResource("3")]
-position = Vector2(944, 158)
+[node name="Platform34" parent="." instance=ExtResource("3")]
+position = Vector2(1124, 530)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform35" parent="." instance=ExtResource("3")]
+position = Vector2(1123, 339)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform37" parent="." instance=ExtResource("3")]
+position = Vector2(1103, 244)
+platform_text = "<h1/>"
+platform_type = "Bouncy"
+
+[node name="Platform36" parent="." instance=ExtResource("3")]
+position = Vector2(1103, 436)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
@@ -364,12 +513,12 @@ platform_text = "<h1/>"
 platform_type = "Bouncy"
 
 [node name="Platform14" parent="." instance=ExtResource("3")]
-position = Vector2(1160, -915)
+position = Vector2(1137, -875)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
 [node name="Platform15" parent="." instance=ExtResource("3")]
-position = Vector2(896, -1143)
+position = Vector2(871, -1176)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
@@ -380,27 +529,24 @@ platform_type = "Bouncy"
 
 [node name="Enemy11" parent="." instance=ExtResource("2")]
 position = Vector2(1005, -1113)
-is_flying = true
 is_static = true
 
 [node name="Platform17" parent="." instance=ExtResource("3")]
-position = Vector2(1106, -1326)
+position = Vector2(1072, -1335)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
 [node name="Enemy12" parent="." instance=ExtResource("2")]
 position = Vector2(1072, -1274)
-is_flying = true
 is_static = true
 
 [node name="Platform18" parent="." instance=ExtResource("3")]
-position = Vector2(743, -1359)
+position = Vector2(726, -1319)
 platform_text = "<h1/>"
 platform_type = "Bouncy"
 
 [node name="Enemy13" parent="." instance=ExtResource("2")]
 position = Vector2(881, -1366)
-is_flying = true
 is_static = true
 
 [node name="Platform19" parent="." instance=ExtResource("3")]
@@ -411,7 +557,6 @@ position = Vector2(272, -1340)
 
 [node name="Enemy14" parent="." instance=ExtResource("2")]
 position = Vector2(485, -1355)
-is_flying = true
 is_static = true
 
 [node name="Platform21" parent="." instance=ExtResource("3")]
@@ -439,17 +584,14 @@ position = Vector2(521, -1616)
 
 [node name="Enemy15" parent="." instance=ExtResource("2")]
 position = Vector2(457, -1531)
-is_flying = true
 is_static = true
 
 [node name="Enemy16" parent="." instance=ExtResource("2")]
 position = Vector2(861, -1661)
-is_flying = true
 is_static = true
 
 [node name="Enemy17" parent="." instance=ExtResource("2")]
 position = Vector2(774, -1474)
-is_flying = true
 is_static = true
 
 [node name="Portal" parent="." instance=ExtResource("6_jw75j")]
@@ -492,25 +634,26 @@ platform_type = "Bouncy"
 
 [node name="Platform33" parent="." instance=ExtResource("3")]
 position = Vector2(278, -2186)
-platform_text = "<h1/>"
+platform_text = "<main/>"
 platform_type = "Bouncy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform33"]
+libraries = {
+"": SubResource("AnimationLibrary_ujkg5")
+}
 
 [node name="Enemy19" parent="." instance=ExtResource("2")]
 position = Vector2(910, -1863)
-is_flying = true
 is_static = true
 
 [node name="Enemy20" parent="." instance=ExtResource("2")]
 position = Vector2(452, -1870)
-is_flying = true
 is_static = true
 
 [node name="Enemy21" parent="." instance=ExtResource("2")]
 position = Vector2(383, -2108)
-is_flying = true
 is_static = true
 
 [node name="Enemy22" parent="." instance=ExtResource("2")]
 position = Vector2(959, -2112)
-is_flying = true
 is_static = true
