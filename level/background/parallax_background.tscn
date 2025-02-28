@@ -10,7 +10,7 @@ scroll_base_scale = Vector2(0.1, 0.15)
 motion_scale = Vector2(0.1, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(114, -18687)
+position = Vector2(114, -19163)
 scale = Vector2(0.78941, 1.00977)
 texture = ExtResource("1_yr1r1")
 centered = false
