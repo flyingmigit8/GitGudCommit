@@ -13,6 +13,7 @@ var _state := State.WALKING
 @onready var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var floor_detector_left := $FloorDetectorLeft as RayCast2D
 @onready var floor_detector_right := $FloorDetectorRight as RayCast2D
+@onready var collision_sound := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 func _physics_process(delta: float) -> void:
 	if _state == State.WALKING and velocity.is_zero_approx():
@@ -38,6 +39,7 @@ func _physics_process(delta: float) -> void:
 			handle_player_collision(collider, collision.get_normal())
 
 func handle_player_collision(player: CharacterBody2D, collision_normal: Vector2):
+	collision_sound.play()
 	if collision_normal.y > 0.5:
 		player.apply_bounce(PLAYER_BOUNCE_FORCE)
 	else:
