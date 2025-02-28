@@ -313,34 +313,31 @@ grow_horizontal = 2
 grow_vertical = 0
 texture_under = SubResource("GradientTexture2D_w6kuv")
 texture_progress = SubResource("GradientTexture2D_08ij1")
+metadata/_edit_use_anchors_ = true
 
 [node name="PowerLoopLabel" type="Label" parent="UI"]
-offset_left = 274.0
-offset_top = 428.0
-offset_right = 528.0
-offset_bottom = 451.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -52.0
+offset_right = 127.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "for (int i = 0; i < MAX_POWER; i++)"
+metadata/_edit_use_anchors_ = true
 
 [node name="CurrentILabel" type="Label" parent="UI"]
-offset_left = 384.0
-offset_top = 451.0
-offset_right = 425.0
-offset_bottom = 474.0
-
-[node name="TextParticles" type="CPUParticles2D" parent="."]
-position = Vector2(0, 18.75)
-
-[node name="ParticlesContainer" type="Control" parent="."]
-z_index = 100
-z_as_relative = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AnimatedDuck" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -18.75)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_avol8")
-animation = &"run"
-frame_progress = 0.339769
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
