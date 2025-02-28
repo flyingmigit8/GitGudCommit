@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://do7htx4sqmcnh"]
 
-[ext_resource type="AudioStream" uid="uid://dp0tta14mu7ux" path="res://music.ogg" id="1_8pjkj"]
+[ext_resource type="AudioStream" uid="uid://2ljv6tllklc6" path="res://windows95song.mp3" id="1_5jdkc"]
 
 [node name="Music" type="AudioStreamPlayer"]
 process_mode = 1
-stream = ExtResource("1_8pjkj")
+stream = ExtResource("1_5jdkc")
 volume_db = -3.0
 autoplay = true
