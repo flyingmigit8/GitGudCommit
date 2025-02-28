@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://sjod173axgwf" path="res://player/jump.wav" id="5"]
 
 [sub_resource type="RectangleShape2D" id="11"]
-size = Vector2(42.5, 27)
+size = Vector2(37.5, 53.25)
 
 [sub_resource type="Gradient" id="Gradient_73vmx"]
 offsets = PackedFloat32Array(0.992958, 1)
@@ -29,6 +29,10 @@ height = 20
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 metadata/_snap_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xny5q"]
+atlas = ExtResource("4_cicsv")
+region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4m66"]
 atlas = ExtResource("4_cicsv")
@@ -90,10 +94,6 @@ region = Rect2(32, 96, 32, 32)
 atlas = ExtResource("4_cicsv")
 region = Rect2(64, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xny5q"]
-atlas = ExtResource("4_cicsv")
-region = Rect2(96, 96, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_71mpw"]
 atlas = ExtResource("4_cicsv")
 region = Rect2(128, 96, 32, 32)
@@ -144,6 +144,14 @@ region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_avol8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xny5q")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s4m66")
@@ -281,7 +289,7 @@ limit_bottom = 690
 drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.25)
+position = Vector2(-1.25, -13.375)
 scale = Vector2(1, 1)
 shape = SubResource("11")
 
@@ -335,5 +343,5 @@ offset_bottom = 40.0
 position = Vector2(0, -18.75)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_avol8")
-animation = &"idle"
-frame_progress = 0.753959
+animation = &"charge"
+frame_progress = 0.0535496

@@ -62,17 +62,23 @@ func _physics_process(delta: float) -> void:
 	if _is_charging_jump:
 		_charge_time += delta
 		_update_charge_bar()
+		var charge_ratio = min(_charge_time / MAX_CHARGE_TIME, 1.0)
+		animated_sprite.scale.y = lerp(2.0, 1.0, charge_ratio)
 
+	if not _is_charging_jump and animated_sprite.scale.y > 2.0:
+		animated_sprite.scale.y = lerp(animated_sprite.scale.y, 2.0, delta * 10.0)
+		
 	# Fall.
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
 	# Only allow horizontal movement when not stunned
-	if not _stunned:
+	if _stunned:
+		velocity.x = move_toward(velocity.x, 0, ACCELERATION_SPEED * 0.05 * delta)
+	elif _is_charging_jump:
+		velocity.x = 0
+	else:
 		var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
 		velocity.x = move_toward(velocity.x, direction, ACCELERATION_SPEED * delta)
-	else:
-		# Optional: Add a small amount of air resistance while stunned
-		velocity.x = move_toward(velocity.x, 0, ACCELERATION_SPEED * 0.05 * delta)
 
 	if not is_zero_approx(velocity.x):
 		if velocity.x > 0.0:
@@ -92,6 +98,8 @@ func get_new_animation() -> StringName:
 	if is_on_floor():
 		if absf(velocity.x) > 0.1:
 			animation_new = "run"
+		elif _is_charging_jump:
+			animation_new = "charge"
 		else:
 			animation_new = "idle"
 	else:
@@ -112,6 +120,7 @@ func _stop_charging_jump() -> void:
 		try_jump()
 		charge_bar.value = 0;
 		update_power_loop_label(0)
+		animated_sprite.scale.y = 2.0
 
 func try_jump() -> void:
 	if is_on_floor():

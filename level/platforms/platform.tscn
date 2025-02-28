@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cky6e5nl0nyod"]
 
-[ext_resource type="Texture2D" uid="uid://bxsmiv7k3fngt" path="res://level/platforms/moving_platform.webp" id="2"]
+[ext_resource type="Script" path="res://level/platforms/platform.gd" id="1_c8uhx"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(192, 27)
@@ -9,11 +9,14 @@ size = Vector2(192, 27)
 z_index = -1
 position = Vector2(-1, 0)
 collision_layer = 8
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2")
+script = ExtResource("1_c8uhx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("1")
 one_way_collision = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "<platform/>"

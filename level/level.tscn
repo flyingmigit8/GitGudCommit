@@ -63,7 +63,7 @@ layer_0/tile_data = PackedInt32Array(65524, 7, 65536, 65525, 0, 0, 65526, 0, 0, 
 
 [node name="Platform" parent="Platforms" instance=ExtResource("3")]
 z_index = 0
-position = Vector2(707, 400)
+position = Vector2(800, 312.056)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform"]
 callback_mode_process = 0
@@ -100,6 +100,10 @@ texture = ExtResource("6")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platforms/PlatformStatic"]
 position = Vector2(-3.20203, -8.41145)
 polygon = PackedVector2Array(-170.838, 7.9798, -90.8381, -15.201, 95.0401, -20.233, 83.4959, 3.25599, -51.1185, 8.44958, -176.787, 34.856)
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(159, 253)
+platform_text = "<div/>"
 
 [node name="Enemies" type="Node" parent="."]
 
