@@ -343,4 +343,4 @@ position = Vector2(0, -18.75)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_avol8")
 animation = &"run"
-frame_progress = 0.842327
+frame_progress = 0.339769
