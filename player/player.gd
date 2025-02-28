@@ -31,6 +31,15 @@ func _ready() -> void:
 	text_particles.emitting = false
 	update_power_loop_label(0)
 
+func apply_bounce(bounce_force: float):
+	print('bounce')
+	velocity.y = bounce_force  # Apply upward force
+	move_and_slide()
+
+func apply_knockback(force: Vector2):
+	print('collide')
+	velocity = force
+	move_and_slide()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump" + action_suffix):
