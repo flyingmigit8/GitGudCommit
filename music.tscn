@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://do7htx4sqmcnh"]
 
-[ext_resource type="AudioStream" uid="uid://2ljv6tllklc6" path="res://windows95song.mp3" id="1_5jdkc"]
+[ext_resource type="AudioStream" uid="uid://bnyy5yfv8bwas" path="res://W95Song.mp3" id="1_30cs8"]
 
 [node name="Music" type="AudioStreamPlayer"]
 process_mode = 1
-stream = ExtResource("1_5jdkc")
+stream = ExtResource("1_30cs8")
 volume_db = -3.0
