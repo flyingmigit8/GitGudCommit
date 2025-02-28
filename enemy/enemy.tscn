@@ -5,10 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://dm7wsawmylc7b" path="res://enemy/hit.wav" id="3"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkya0"]
-radius = 14.0
-height = 40.0
-
 [sub_resource type="CanvasItemMaterial" id="6"]
 blend_mode = 1
 
@@ -16,9 +12,14 @@ blend_mode = 1
 offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkya0"]
+radius = 14.0
+height = 40.0
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 24
+collision_mask = 25
+safe_margin = 1.0
 script = ExtResource("5")
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
@@ -35,11 +36,6 @@ collision_mask = 24
 position = Vector2(15.5, -3)
 target_position = Vector2(0, 35)
 collision_mask = 24
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.00009)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_rkya0")
 
 [node name="Explosion" type="CPUParticles2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.12)
@@ -77,3 +73,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_cpbf2")
 expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_rkya0")
