@@ -25,6 +25,7 @@ var _state: State
 func _ready() -> void:
 	if is_static:
 		_state = State.STATIC
+		MotionMode.MOTION_MODE_FLOATING
 	elif is_flying:
 		_state = State.FLYING
 		MotionMode.MOTION_MODE_FLOATING
