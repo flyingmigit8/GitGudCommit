@@ -23,6 +23,8 @@ var _state: State
 func _ready() -> void:
 	# Set the initial state based on the `is_flying` flag
 	_state = State.FLYING if is_flying else State.WALKING
+	if is_flying:
+		MotionMode.MOTION_MODE_FLOATING
 
 func _physics_process(delta: float) -> void:
 	match _state:

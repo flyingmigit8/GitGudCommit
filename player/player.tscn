@@ -265,7 +265,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 12.0
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -342,5 +342,5 @@ offset_bottom = 40.0
 position = Vector2(0, -18.75)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_avol8")
-animation = &"charge"
-frame_progress = 0.0535496
+animation = &"run"
+frame_progress = 0.842327
