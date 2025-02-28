@@ -157,7 +157,10 @@ func emit_text_particles(charge_ratio: float) -> void:
 	
 	# Set up a timer to remove the label after a short time
 	var timer = get_tree().create_timer(1.0)
-	timer.timeout.connect(func(): label_node.queue_free())
+	timer.timeout.connect(func(): 
+		if is_instance_valid(label_node): 
+			label_node.queue_free()
+	)
 
 func get_random_text_node(charge_ratio: float) -> Label:
 	# Create a new Label node

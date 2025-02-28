@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://do3xma2uh00ch" path="res://level/portal/portal.png" id="1_0yah0"]
 [ext_resource type="Script" path="res://level/portal/area_2d.gd" id="2_hgpqi"]
-[ext_resource type="PackedScene" uid="uid://bw137ccbnowns" path="res://gui/victory_screen.tscn" id="3_gh3y2"]
+[ext_resource type="PackedScene" uid="uid://3sw282bcv0ee" path="res://gui/victory_screen.tscn" id="3_gh3y2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5emf4"]
 radius = 30.0167
