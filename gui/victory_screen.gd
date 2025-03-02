@@ -36,11 +36,14 @@ func _on_submit_button_pressed() -> void:
 		
 	var time = GameStopwatch.elapsed_time
 
-	var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, time).sw_save_score_complete
-	print("Score persisted successfully: " + str(sw_result.score_id))
-	print(time)
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://addons/silent_wolf/Scores/Leaderboard.tscn")
+	if not Global.API_KEY == "API-KEY":
+		var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, time).sw_save_score_complete
+		print("Score persisted successfully: " + str(sw_result.score_id))
+		print(time)
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://addons/silent_wolf/Scores/Leaderboard.tscn")
+	else:
+		restart_game()
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	player_name = line_edit.text
