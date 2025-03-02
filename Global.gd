@@ -5,8 +5,8 @@ var player_name := ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
   SilentWolf.configure({
-	"api_key": "0nbZ3mHsGl7qdR6zF1Jy8a1BvOnRRr3B1UcfXvIS",
-	"game_id": "bug-hunt12",
+	"api_key": "API-KEY",
+	"game_id": "bug-hunt1",
 	"log_level": 1
   })
 

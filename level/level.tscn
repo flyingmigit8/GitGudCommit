@@ -597,7 +597,7 @@ position = Vector2(774, -1474)
 is_static = true
 
 [node name="Portal" parent="." instance=ExtResource("6_jw75j")]
-position = Vector2(422, 575)
+position = Vector2(277, -2248)
 
 [node name="Enemy18" parent="." instance=ExtResource("2")]
 position = Vector2(379, -1706)
