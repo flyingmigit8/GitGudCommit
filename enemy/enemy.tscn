@@ -19,7 +19,11 @@ size = Vector2(38.9998, 50.0001)
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 25
+floor_constant_speed = true
 floor_max_angle = 0.349066
+floor_snap_length = 2.0
+platform_on_leave = 2
+platform_floor_layers = 24
 safe_margin = 1.0
 script = ExtResource("5")
 

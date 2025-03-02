@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+# Constants
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
 const JUMP_VELOCITY = -900.0
@@ -10,9 +11,10 @@ const MIN_JUMP_VELOCITY = -600.0
 const TERMINAL_VELOCITY = 700
 const STUN_DURATION := 0.5
 
-
+# Exports
 @export var action_suffix := ""
 
+# Nodes
 var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var platform_detector := $PlatformDetector as RayCast2D
 @onready var jump_sound := $Jump as AudioStreamPlayer2D
@@ -23,28 +25,35 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 @onready var current_i_label := $UI/CurrentILabel as Label
 @onready var animated_sprite := $AnimatedDuck as AnimatedSprite2D
 
+# Class Variables
 var _is_charging_jump := false
 var _charge_time := 0.0
-var code_texts = ["printf()", "console.log()", "print()", "System.out.println()", "cout<<", "Debug.Log()", "echo", "fmt.Println()"]
-# Add stun timer for knockback/bounce effects
+var code_texts := ["printf()", "console.log()", "print()", "System.out.println()", "cout<<", "Debug.Log()", "echo", "fmt.Println()"]
 var _stunned := false
 var _stun_timer := 0.0
+
+var initial_position : Vector2
 
 func _ready() -> void:
 	text_particles.emitting = false
 	update_power_loop_label(0)
+	initial_position = animated_sprite.position
 
-func apply_bounce(bounce_force: float):
+
+
+func apply_bounce(bounce_force: float) -> void:
 	velocity.y = bounce_force  # Apply upward force
 	_stunned = true
 	_stun_timer = 0.0
 	move_and_slide()
 
-func apply_knockback(force: Vector2):
+
+func apply_knockback(force: Vector2) -> void:
 	velocity = force
 	_stunned = true
 	_stun_timer = 0.0
 	move_and_slide()
+
 
 func _physics_process(delta: float) -> void:
 	# Update stun timer if stunned
@@ -61,11 +70,20 @@ func _physics_process(delta: float) -> void:
 	if _is_charging_jump:
 		_charge_time += delta
 		_update_charge_bar()
-		var charge_ratio = min(_charge_time / MAX_CHARGE_TIME, 1.0)
-		animated_sprite.scale.y = lerp(2.0, 1.0, charge_ratio)
-
-	if not _is_charging_jump and animated_sprite.scale.y > 2.0:
-		animated_sprite.scale.y = lerp(animated_sprite.scale.y, 2.0, delta * 10.0)
+		var charge_ratio: float = min(_charge_time / MAX_CHARGE_TIME, 1.0)
+		
+		# Calculate the new scale based on charge ratio
+		var new_scale = 2 - (charge_ratio * (2 - 1))
+		
+		# Apply the scale
+		animated_sprite.scale.y = new_scale
+		
+		# Adjust position to keep feet on the ground
+		var height_offset = (1.0 - new_scale) * animated_sprite.get_sprite_frames().get_frame_texture("default", 0).get_height()
+		animated_sprite.position.y = 0 + height_offset * 0.5
+	else:
+		animated_sprite.position = initial_position
+		animated_sprite.scale.y = 2
 		
 	# Fall.
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
@@ -92,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	if animation != animated_sprite.get_animation():
 		animated_sprite.play(animation)
 
+
 func get_new_animation() -> StringName:
 	var animation_new: StringName
 	if is_on_floor():
@@ -108,10 +127,12 @@ func get_new_animation() -> StringName:
 			animation_new = "jumping"
 	return animation_new
 
+
 func _start_charging_jump() -> void:
 	if is_on_floor():
 		_is_charging_jump = true
 		_charge_time = 0.0
+
 
 func _stop_charging_jump() -> void:
 	if _is_charging_jump:
@@ -120,6 +141,7 @@ func _stop_charging_jump() -> void:
 		charge_bar.value = 0;
 		update_power_loop_label(0)
 		animated_sprite.scale.y = 2.0
+
 
 func try_jump() -> void:
 	if is_on_floor():
@@ -134,33 +156,30 @@ func try_jump() -> void:
 	jump_sound.play()
 	
 	# increase particles per charge
-	var num_particles = 1 + int(charge_ratio * 3)
+	var num_particles : int = 1 + int(charge_ratio * 3)
 	for i in range(num_particles):
 		emit_text_particles(charge_ratio)
+
 
 func _update_charge_bar() -> void:
 	var charge_ratio : float = min(_charge_time / MAX_CHARGE_TIME, 1.0)
 	charge_bar.value = charge_ratio * 100
-	var current_i = floor(charge_ratio * MAX_POWER)
+	var current_i : int = floor(charge_ratio * MAX_POWER)
 	update_power_loop_label(current_i)
+
 
 func emit_text_particles(charge_ratio: float) -> void:
 	# Create a label node
-	var label_node = get_random_text_node(charge_ratio)
-	
+	var label_node: Label = get_random_text_node(charge_ratio)
+
 	# Add to the particles container
 	particles_container.add_child(label_node)
-	
-	# Set starting position (at player's feet)
-	var random_x_offset = randf_range(-10, 10)
-	label_node.position = Vector2(random_x_offset, 10)  # Start below player's feet
-	
-	# Set up a timer to remove the label after a short time
-	var timer = get_tree().create_timer(1.0)
-	timer.timeout.connect(func(): 
-		if is_instance_valid(label_node): 
-			label_node.queue_free()
-	)
+
+	# Set starting position (near player's feet with slight randomness)
+	label_node.position = Vector2(randf_range(-20, 0), 10)
+
+	# Apply propulsion effect
+	animate_particle(label_node, charge_ratio)
 
 func get_random_text_node(charge_ratio: float) -> Label:
 	# Create a new Label node
@@ -174,17 +193,29 @@ func get_random_text_node(charge_ratio: float) -> Label:
 	var font = label.get_theme_font("font")
 	label.add_theme_font_size_override("font_size", font_size)
 	
-	# Random downward velocity (propulsion effect)
-	var direction = Vector2(randf_range(-0.5, 0.5), randf_range(1.0, 2.0)).normalized()
-	var speed = randf_range(100, 200) * (0.8 + charge_ratio * 0.5)  # Faster for stronger jumps
-	var start_pos = label.position
-	
+	return label
+
+func animate_particle(label: Label, charge_ratio: float) -> void:
+	# Calculate propulsion direction (opposite to jump)
+	var propulsion_angle = randf_range(PI / 4, 3 * PI / 4)  # Spread downward
+	var direction = Vector2(cos(propulsion_angle), sin(propulsion_angle)).normalized()
+
+	# Speed based on charge ratio
+	var speed = randf_range(100, 250) * (0.8 + charge_ratio * 0.5)
+
 	# Set up animation for the label
 	var tween = create_tween()
-	tween.tween_property(label, "position", start_pos + direction * speed, 0.8)
+	tween.tween_property(label, "position", label.position + direction * speed, 0.8)
 	tween.parallel().tween_property(label, "modulate:a", 0.0, 0.8)
+
+	# Remove label after animation
+	var timer = get_tree().create_timer(1.0)
+	timer.timeout.connect(func():
+		if is_instance_valid(label):
+			label.queue_free()
+	)
+
 	
-	return label
 	
 func update_power_loop_label(current_i: int) -> void:
 	current_i_label.text =  "i = " + str(current_i)

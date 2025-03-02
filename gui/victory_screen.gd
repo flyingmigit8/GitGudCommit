@@ -30,3 +30,4 @@ func restart_game() -> void:
 	
 	# Reload the current scene to restart the game
 	get_tree().reload_current_scene()
+	GameStopwatch.reset()

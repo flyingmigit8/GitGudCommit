@@ -1,7 +1,6 @@
 class_name PauseMenu
 extends Control
 
-
 @export var fade_in_duration := 0.3
 @export var fade_out_duration := 0.2
 
@@ -12,9 +11,6 @@ func _ready() -> void:
 	hide()
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-
-
-# In PauseMenu.gd
 func open() -> void:
 	show()
 	resume_button.grab_focus()
@@ -62,11 +58,14 @@ func close() -> void:
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
 	# Unpause at the end of the animation
-	tween.tween_callback(func(): get_tree().paused = false)
+	tween.tween_callback(func() -> void:
+		get_tree().paused = false
+	)
 	tween.tween_callback(hide)
 
 
 func _on_resume_button_pressed() -> void:
+	GameStopwatch.start()
 	close()
 	
 func _on_reset_button_pressed() -> void:
@@ -79,5 +78,5 @@ func _on_quit_button_pressed() -> void:
 		
 func reset_game() -> void:
 	get_tree().paused = false
-	var current_scene = get_tree().current_scene
 	get_tree().reload_current_scene()
+	GameStopwatch.reset()

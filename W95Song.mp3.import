@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/W95Song.mp3-b785914b59f28012c00752a3763c2409.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

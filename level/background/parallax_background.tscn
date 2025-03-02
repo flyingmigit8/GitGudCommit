@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cw6nldo3rjyyq"]
 
-[ext_resource type="Texture2D" uid="uid://hjhm7exp0k5t" path="res://gui/TallBackground.png" id="1_yr1r1"]
+[ext_resource type="Texture2D" uid="uid://djpw8advinkr0" path="res://level/background/parallax_bg.png" id="1_d3jse"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_offset = Vector2(0, 100)
@@ -12,5 +12,5 @@ motion_scale = Vector2(0.1, 10)
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(114, -19163)
 scale = Vector2(0.78941, 1.00977)
-texture = ExtResource("1_yr1r1")
+texture = ExtResource("1_d3jse")
 centered = false

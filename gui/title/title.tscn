@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://di0pjf7eutwpc"]
+
+[ext_resource type="Texture2D" uid="uid://ctuc1ct8kjoru" path="res://gui/title/title.png" id="1_m5p0w"]
+[ext_resource type="Script" path="res://gui/title/title.gd" id="2_goudl"]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 803.0
+offset_bottom = 756.0
+texture = ExtResource("1_m5p0w")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 333.0
+offset_right = 526.0
+offset_bottom = 423.0
+theme_override_colors/font_color = Color(100, 100, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Play"
+script = ExtResource("2_goudl")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
