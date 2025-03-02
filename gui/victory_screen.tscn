@@ -20,9 +20,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 124.0
-offset_top = 36.0
-offset_bottom = -6.0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 2.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.173753, 0.158942, 0.501015, 1)
@@ -32,6 +33,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -115.0
+offset_right = -4.0
+offset_bottom = -115.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -41,16 +46,11 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = ">(.)__ <(.)__ =(.)__
- (___/  (___/  (___/ 
-
+text = "
 >(.)__ <(.)__ =(.)__        
  (___/  (___/  (___/ 
 
 You made it out of the stack trace! Congratulations on conquering all the bugs! 
-
->(.)__ <(.)__ =(.)__
- (___/  (___/  (___/ 
 
 >(.)__ <(.)__ =(.)__
  (___/  (___/  (___/ 
@@ -70,9 +70,36 @@ position = Vector2(190.144, 370.386)
 scale = Vector2(0.312897, 0.254804)
 texture = ExtResource("3_soqhd")
 
+[node name="LineEdit" type="LineEdit" parent="Control"]
+offset_left = 480.0
+offset_top = 303.0
+offset_right = 591.0
+offset_bottom = 334.0
+placeholder_text = "name"
+
+[node name="Submit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 609.0
+offset_top = 305.0
+offset_right = 672.0
+offset_bottom = 336.0
+text = "Submit"
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 363.0
+offset_right = 637.0
+offset_bottom = 404.0
+text = "New Game"
+
 [node name="TimeLabel" type="Label" parent="."]
-offset_left = 563.0
-offset_top = 288.0
-offset_right = 636.0
-offset_bottom = 311.0
+offset_left = 547.0
+offset_top = 272.0
+offset_right = 620.0
+offset_bottom = 295.0
 text = "00:00.000"
+
+[connection signal="text_changed" from="Control/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="Control/Submit" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_new_button_pressed"]

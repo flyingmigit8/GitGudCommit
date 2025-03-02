@@ -25,7 +25,7 @@ offset_right = 526.0
 offset_bottom = 423.0
 theme_override_colors/font_color = Color(100, 100, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Play"
+text = "Debug"
 script = ExtResource("2_goudl")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

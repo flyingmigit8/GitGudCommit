@@ -33,6 +33,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		get_tree().root.set_input_as_handled()
+	elif event.is_action_pressed(&"reset"):
+		reset_game()
 	elif event.is_action_pressed(&"toggle_pause"):
 		var tree := get_tree()
 		
@@ -44,3 +46,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_pause_menu.close()
 			
 		get_tree().root.set_input_as_handled()
+		
+func reset_game() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	GameStopwatch.reset()
