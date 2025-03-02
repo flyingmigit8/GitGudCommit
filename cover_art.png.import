@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://icddaryasunc"
-path="res://.godot/imported/tree_1.webp-f58e5053ffaef9e0095066ea1992f7cb.ctex"
+uid="uid://bp0qaibciauct"
+path="res://.godot/imported/cover_art.png-9741ec345f8b136417821a045dbdd440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/props/tree_1.webp"
-dest_files=["res://.godot/imported/tree_1.webp-f58e5053ffaef9e0095066ea1992f7cb.ctex"]
+source_file="res://cover_art.png"
+dest_files=["res://.godot/imported/cover_art.png-9741ec345f8b136417821a045dbdd440.ctex"]
 
 [params]
 

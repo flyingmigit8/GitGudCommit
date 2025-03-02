@@ -13,13 +13,14 @@ config_version=5
 config/name="Bug Hunt"
 config/description="Escape the stack trace! watch out for bugs!"
 config/tags=PackedStringArray("2d", "demo", "official", "physics", "tilemap")
-run/main_scene="res://game_singleplayer.tscn"
+run/main_scene="res://gui/title/title.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.webp"
 
 [autoload]
 
 Music="*res://music.tscn"
+GameStopwatch="*res://gui/stopwatch.gd"
 
 [debug]
 

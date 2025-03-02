@@ -7,4 +7,3 @@ process_mode = 1
 stream = ExtResource("1_30cs8")
 volume_db = -3.0
 autoplay = true
-parameters/looping = false

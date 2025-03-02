@@ -273,6 +273,7 @@ scale = Vector2(0.8, 0.8)
 collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
+platform_floor_layers = 24
 script = ExtResource("3")
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
@@ -357,5 +358,4 @@ offset_bottom = 40.0
 position = Vector2(0, -18.75)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_avol8")
-animation = &"run"
-frame_progress = 0.339769
+animation = &"charge"

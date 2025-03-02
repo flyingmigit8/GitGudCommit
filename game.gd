@@ -3,20 +3,22 @@ extends Node
 
 @onready var _pause_menu := $InterfaceLayer/PauseMenu as PauseMenu
 @onready var time_label := $InterfaceLayer/TimeLabel as Label
-@onready var stopwatch := $CanvasLayer/Stopwatch as Stopwatch
 
 func _ready() -> void:
 	# Connect to the stopwatch's time_updated signal
-	stopwatch.time_updated.connect(_on_stopwatch_time_updated)
+	GameStopwatch.time_updated.connect(_on_stopwatch_time_updated)
 	# Start the stopwatch when the game begins
-	stopwatch.start()
+	GameStopwatch.start()
 
 func _on_stopwatch_time_updated(time_text: String) -> void:
 	time_label.text = time_text
 
 func get_final_time() -> String:
-	stopwatch.stop()
-	return stopwatch.get_time()
+	GameStopwatch.stop()
+	return GameStopwatch.get_time()
+	
+func resume_stopwatch() -> void:
+	GameStopwatch.start();
 
 # New method to hide the stopwatch UI
 func hide_stopwatch_ui() -> void:
@@ -35,8 +37,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		var tree := get_tree()
 		
 		if not tree.paused:
+			GameStopwatch.stop()
 			_pause_menu.open()
 		else:
+			GameStopwatch.start()
 			_pause_menu.close()
 			
 		get_tree().root.set_input_as_handled()
